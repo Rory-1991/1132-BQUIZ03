@@ -1,6 +1,5 @@
 <?php 
 
-session_start();
 
 if(isset($_POST['acc'])){
 
@@ -10,6 +9,8 @@ if(isset($_POST['acc'])){
        echo "帳號或密碼錯誤";
    }
 }
+
+
 
 if(!isset($_SESSION['login'])){
 ?>
