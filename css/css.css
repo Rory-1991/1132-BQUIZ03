@@ -6,6 +6,16 @@ body {
 	font-family: 微軟正黑體;
 }
 
+h1,
+h2,
+h3,
+h4 {
+	margin: 0;
+	padding: 5px 0;
+	background: #999;
+	color: white;
+}
+
 select,
 select option {
 	padding: 5px;
@@ -57,12 +67,12 @@ input:focus {
 	width: 1022px;
 	min-height: 766px;
 	border: #000 1px solid;
-	margin: 30px auto 10px auto;
+	margin: 10px auto 10px auto;
 }
 
 #top {
 	display: block;
-	height: 100px;
+	height: 80px;
 }
 
 #top2 {
