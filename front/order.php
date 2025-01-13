@@ -54,6 +54,10 @@ $("#movie").on("change",function(){
     getDays();
 })
 
+$("#date").on("change",function(){
+    getSessions();
+})
+
 
 function getMovies(){
     $.get("api/get_movies.php",function(movies){
@@ -74,5 +78,11 @@ function getDays(){
     })
 }
 
+function getSessions(){
+    $.get("api/get_sessions.php",{movie:$("#movie").val(),date:$("#date").val()},function(sessions){
+        $("#session").html(sessions);
+    })
+
+}
 
 </script>
