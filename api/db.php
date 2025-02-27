@@ -1,4 +1,5 @@
 <?php
+
 date_default_timezone_set("Asia/Taipei");
 session_start();
 
@@ -6,14 +7,12 @@ class DB{
     protected $dsn="mysql:host=localhost;charset=utf8;dbname=db15-3";
     protected $pdo;
     protected $table;
-
     public static $level=[
         1=>'普遍級',
         2=>'輔導級',
         3=>'保護級',
         4=>'限制級'
     ];
-
     function __construct($table){
         $this->table=$table;
         $this->pdo=new PDO($this->dsn,'root','');
@@ -116,8 +115,25 @@ class DB{
     function avg($col,$where=[]){
         return $this->avg('avg',$col,$where);
     }
-    function count($where=[]){
-        return $this->math('count','*',$where);
+    function count(...$arg){
+        $sql="SELECT count(*) FROM $this->table ";
+        if(!empty($arg[0])){
+            if(is_array($arg[0])){
+
+                $where=$this->a2s($arg[0]);
+                $sql=$sql . " WHERE ". join(" && ",$where);
+            }else{
+                //$sql=$sql.$arg[0];
+                $sql .= $arg[0];
+
+            }
+        }
+
+        if(!empty($arg[1])){
+            $sql=$sql . $arg[1];
+        }
+
+        return $this->pdo->query($sql)->fetchColumn();
     }
 
     /**
@@ -171,4 +187,4 @@ function to($url){
 
 $Poster=new DB('posters');   
 $Movie=new DB('movies');
-$Order=new DB('orders'); 
+$Order=new DB('orders');
